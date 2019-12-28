@@ -1,0 +1,14 @@
+{
+  "name": "node_ex",
+  "version": "1.0.0",
+  "description": "first node exercise",
+  "main": "server.js",
+  "scripts": {
+    "test": "yarn serve"
+  },
+  "keywords": [
+    "node/exercise_one"
+  ],
+  "author": "sachith silva",
+  "license": "MIT"
+}

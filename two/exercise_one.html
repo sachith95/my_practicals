@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<title>Get My IP</title>
+<style>
+.title {
+    text-align: center;
+}
+.center {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+  }
+
+</style>
+<body>
+<h1 class="title">Who am i !!</h1>
+<div class="center">
+    <div>   
+    <br/>
+    <bt/>
+    First name:<br>
+    <input type="text" name="firstname" id="firstName">
+    <br>
+    Last name:<br>
+    <input type="text" name="lastname" id="lastName">
+    <br>
+    IP Address:<br>
+    <input type="text" name="ipaddress" id="ip" value="8.8.8.8">
+    <br><br>
+    <button type="button" onclick="getInfo()">Find me! fetch</button>
+    <button type="button" onclick="getInfoxml()">Find me! xml</button>
+    <button type="button" onclick="changeStyle()">Find me! xml</button>
+    </div>
+    <div>
+    <p id="response"> </p>
+    </div>   
+</div>
+
+</body>
+<script>
+     async function getInfo(){
+        let ip = document.getElementById("ip").value;
+        let url = `https://ipapi.co/${ip}/json`
+        let response = await fetch(url);
+
+        if (response.ok) { 
+        let json = await response.json();
+        document.getElementById('response').innerHTML = "Ta da !!!" + JSON.stringify(json, undefined, 4);
+        } else {
+        alert("HTTP-Error: " + response.status);
+        }
+    }
+    function getInfoxml(){
+        let xhttp = new XMLHttpRequest();
+        let ip = document.getElementById("ip").value;
+        let url = `https://ipapi.co/${ip}/json`
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("response").innerHTML = "Ta da  xml!!!" + JSON.stringify(xhttp.responseText, undefined, 4); 
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+    }
+
+    function changeStyle() {
+        document.getElementById("p2").style.color = "blue";
+    }
+</script>
+</html>
